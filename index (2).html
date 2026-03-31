@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PALawHelp.org Editorial Style Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0d2b5e;
+    --mid-blue: #1a4f9c;
+    --light-blue: #5b8fd4;
+    --pale-blue: #dde8f5;
+    --very-pale: #f0f5fb;
+    --gold-dark: #c8960c;
+    --gold-light: #f2d06b;
+    --gold-pale: #fdf6e0;
+    --gray-blue: #3a4f6e;
+    --light-gray-blue: #6b7fa0;
+    --off-white: #f8f9fc;
+    --white: #ffffff;
+    --text: #1a2540;
+    --text-light: #4a5568;
+    --border: #d0daea;
+    --sidebar-w: 280px;
+    --header-h: 64px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--text);
+    background: var(--off-white);
+  }
+
+  /* ── HEADER ───────────────────────────────────────────── */
+  #site-header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: var(--header-h);
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+    gap: 20px;
+  }
+
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .header-logo {
+    width: 36px; height: 36px;
+    background: var(--gold-dark);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Lora', serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--white);
+    letter-spacing: -0.5px;
+  }
+
+  .header-title {
+    font-family: 'Lora', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.2;
+  }
+
+  .header-subtitle {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--light-blue);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .header-search {
+    flex: 1;
+    max-width: 400px;
+    margin-left: auto;
+    position: relative;
+  }
+
+  .header-search input {
+    width: 100%;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 8px;
+    padding: 8px 16px 8px 40px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 14px;
+    color: var(--white);
+    outline: none;
+    transition: background 0.2s, border-color 0.2s;
+  }
+
+  .header-search input::placeholder { color: rgba(255,255,255,0.45); }
+  .header-search input:focus {
+    background: rgba(255,255,255,0.15);
+    border-color: var(--light-blue);
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 12px; top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255,255,255,0.45);
+    font-size: 15px;
+    pointer-events: none;
+  }
+
+  #search-results {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0; right: 0;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.14);
+    max-height: 360px;
+    overflow-y: auto;
+    display: none;
+    z-index: 200;
+  }
+
+  .search-result-item {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .search-result-item:last-child { border-bottom: none; }
+  .search-result-item:hover { background: var(--very-pale); }
+
+  .search-result-item .result-section {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--mid-blue);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .search-result-item .result-title {
+    font-size: 14px;
+    color: var(--text);
+    font-weight: 600;
+    margin-top: 1px;
+  }
+
+  .search-result-item .result-snippet {
+    font-size: 13px;
+    color: var(--text-light);
+    margin-top: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  mark { background: var(--gold-light); padding: 0 2px; border-radius: 2px; }
+
+  /* ── LAYOUT ───────────────────────────────────────────── */
+  #layout {
+    display: flex;
+    min-height: 100vh;
+    padding-top: var(--header-h);
+  }
+
+  /* ── SIDEBAR ──────────────────────────────────────────── */
+  #sidebar {
+    width: var(--sidebar-w);
+    flex-shrink: 0;
+    position: fixed;
+    top: var(--header-h);
+    left: 0;
+    bottom: 0;
+    overflow-y: auto;
+    background: var(--white);
+    border-right: 1px solid var(--border);
+    padding: 20px 0 40px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+
+  .nav-section-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--light-gray-blue);
+    padding: 16px 20px 6px;
+  }
+
+  .nav-item {
+    display: block;
+    padding: 7px 20px 7px 20px;
+    font-size: 13.5px;
+    color: var(--text-light);
+    text-decoration: none;
+    border-left: 3px solid transparent;
+    transition: all 0.15s;
+    line-height: 1.35;
+  }
+
+  .nav-item:hover {
+    color: var(--mid-blue);
+    background: var(--very-pale);
+    border-left-color: var(--light-blue);
+  }
+
+  .nav-item.active {
+    color: var(--mid-blue);
+    background: var(--pale-blue);
+    border-left-color: var(--mid-blue);
+    font-weight: 600;
+  }
+
+  .nav-item.sub {
+    padding-left: 32px;
+    font-size: 12.5px;
+  }
+
+  .nav-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 10px 20px;
+  }
+
+  /* ── MAIN CONTENT ─────────────────────────────────────── */
+  #main {
+    margin-left: var(--sidebar-w);
+    flex: 1;
+    min-width: 0;
+    padding: 40px 48px 80px;
+  }
+
+  /* ── HERO ─────────────────────────────────────────────── */
+  .page-hero {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--mid-blue) 100%);
+    border-radius: 16px;
+    padding: 48px 48px 44px;
+    margin-bottom: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page-hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 260px; height: 260px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+
+  .page-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; right: 80px;
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.03);
+  }
+
+  .hero-org {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 10px;
+  }
+
+  .hero-title {
+    font-family: 'Lora', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 8px;
+  }
+
+  .hero-subtitle {
+    font-size: 18px;
+    color: rgba(255,255,255,0.7);
+    font-weight: 300;
+    margin-bottom: 24px;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .hero-badge {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 6px;
+    padding: 5px 12px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.8);
+    font-weight: 600;
+  }
+
+  /* ── SECTIONS ─────────────────────────────────────────── */
+  .guide-section {
+    margin-bottom: 56px;
+    scroll-margin-top: calc(var(--header-h) + 24px);
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--pale-blue);
+  }
+
+  .section-number {
+    width: 36px; height: 36px;
+    background: var(--navy);
+    color: var(--white);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Lora', serif;
+    font-size: 15px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: 'Lora', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.2;
+  }
+
+  h3 {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--mid-blue);
+    margin: 28px 0 12px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--pale-blue);
+  }
+
+  h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--gray-blue);
+    margin: 20px 0 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  p { margin-bottom: 14px; font-size: 15px; color: var(--text); }
+
+  ul, ol {
+    margin: 10px 0 16px 22px;
+    font-size: 15px;
+  }
+
+  li { margin-bottom: 6px; line-height: 1.55; }
+
+  strong { color: var(--navy); }
+
+  /* ── TABLES ───────────────────────────────────────────── */
+  .table-wrap {
+    overflow-x: auto;
+    margin: 16px 0 24px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+
+  thead tr {
+    background: var(--navy);
+  }
+
+  thead th {
+    padding: 11px 16px;
+    text-align: left;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--white);
+  }
+
+  tbody tr:nth-child(even) { background: var(--very-pale); }
+  tbody tr:nth-child(odd) { background: var(--white); }
+  tbody tr:hover { background: var(--pale-blue); transition: background 0.15s; }
+
+  td {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.5;
+    color: var(--text);
+  }
+
+  tr:last-child td { border-bottom: none; }
+
+  td strong { color: var(--mid-blue); font-weight: 700; }
+
+  /* ── CALLOUT BOXES ────────────────────────────────────── */
+  .callout {
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 18px 0;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    font-size: 14.5px;
+    line-height: 1.6;
+  }
+
+  .callout-icon {
+    font-size: 18px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .callout.info { background: var(--pale-blue); border-left: 4px solid var(--mid-blue); }
+  .callout.info .callout-label { color: var(--mid-blue); }
+
+  .callout.warning { background: var(--gold-pale); border-left: 4px solid var(--gold-dark); }
+  .callout.warning .callout-label { color: var(--gold-dark); }
+
+  .callout.principle { background: #eef3f9; border-left: 4px solid var(--navy); }
+  .callout.principle .callout-label { color: var(--navy); }
+
+  .callout.pending { background: #fff8ec; border-left: 4px solid var(--gold-dark); }
+  .callout.pending .callout-label { color: var(--gold-dark); }
+
+  .callout-label {
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  /* ── QUICK REF CARD ───────────────────────────────────── */
+  .quick-ref-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 16px 0;
+  }
+
+  .qr-item {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 13.5px;
+  }
+
+  .qr-rule {
+    font-weight: 700;
+    color: var(--navy);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 3px;
+  }
+
+  .qr-answer { color: var(--text); }
+
+  /* ── TIER CARDS ───────────────────────────────────────── */
+  .tier-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin: 16px 0 24px;
+  }
+
+  .tier-card {
+    border-radius: 10px;
+    padding: 18px;
+    border: 1px solid var(--border);
+    position: relative;
+  }
+
+  .tier-card.t1 { background: #eef6ee; border-top: 4px solid #2e7d32; }
+  .tier-card.t2 { background: var(--pale-blue); border-top: 4px solid var(--mid-blue); }
+  .tier-card.t3 { background: #f9f9f9; border-top: 4px solid var(--light-gray-blue); }
+
+  .tier-badge {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .t1 .tier-badge { color: #2e7d32; }
+  .t2 .tier-badge { color: var(--mid-blue); }
+  .t3 .tier-badge { color: var(--light-gray-blue); }
+
+  .tier-name {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+
+  .tier-desc { font-size: 13px; color: var(--text-light); line-height: 1.5; }
+
+  /* ── PRINCIPLE CARDS ──────────────────────────────────── */
+  .principle-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 16px 0;
+  }
+
+  .principle-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+    border-left: 4px solid var(--mid-blue);
+  }
+
+  .principle-name {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+
+  .principle-desc { font-size: 13.5px; color: var(--text-light); line-height: 1.5; }
+
+  /* ── ACRONYM CATEGORIES ───────────────────────────────── */
+  .acronym-cat {
+    margin-bottom: 8px;
+  }
+
+  .acronym-cat-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    background: var(--pale-blue);
+    border-radius: 8px 8px 0 0;
+    cursor: pointer;
+    user-select: none;
+    border: 1px solid var(--border);
+    border-bottom: none;
+    transition: background 0.15s;
+  }
+
+  .acronym-cat-header:hover { background: #cdd8ef; }
+
+  .acronym-cat-title {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--navy);
+    flex: 1;
+  }
+
+  .acronym-cat-count {
+    font-size: 11px;
+    color: var(--light-gray-blue);
+    font-weight: 600;
+    background: var(--white);
+    padding: 2px 8px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+  }
+
+  .chevron {
+    color: var(--mid-blue);
+    font-size: 12px;
+    transition: transform 0.2s;
+  }
+
+  .acronym-cat.open .chevron { transform: rotate(180deg); }
+
+  .acronym-cat-body {
+    display: none;
+    border: 1px solid var(--border);
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    overflow: hidden;
+  }
+
+  .acronym-cat.open .acronym-cat-body { display: block; }
+
+  /* ── STATUS BADGES ────────────────────────────────────── */
+  .status-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+
+  .status-pending { background: var(--gold-pale); color: var(--gold-dark); border: 1px solid var(--gold-light); }
+  .status-resolved { background: #eef6ee; color: #2e7d32; border: 1px solid #c8e6c9; }
+
+  /* ── BACK TO TOP ──────────────────────────────────────── */
+  #back-to-top {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    width: 40px; height: 40px;
+    background: var(--mid-blue);
+    color: var(--white);
+    border: none;
+    border-radius: 50%;
+    font-size: 18px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  #back-to-top.visible { opacity: 1; pointer-events: all; }
+  #back-to-top:hover { background: var(--navy); }
+
+  /* ── PRINT ────────────────────────────────────────────── */
+  @media print {
+    #site-header, #sidebar, #back-to-top { display: none; }
+    #main { margin-left: 0; padding: 20px; }
+    .guide-section { page-break-inside: avoid; }
+  }
+
+  /* ── RESPONSIVE ───────────────────────────────────────── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 24px 20px 60px; }
+    .tier-cards { grid-template-columns: 1fr; }
+    .principle-grid { grid-template-columns: 1fr; }
+    .quick-ref-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header id="site-header">
+  <a href="#top" class="header-brand">
+    <div class="header-logo">PA</div>
+    <div>
+      <div class="header-title">PALawHelp.org</div>
+      <div class="header-subtitle">Editorial Style Guide</div>
+    </div>
+  </a>
+  <div class="header-search">
+    <span class="search-icon">&#128269;</span>
+    <input type="text" id="search-input" placeholder="Search the style guide…" autocomplete="off">
+    <div id="search-results"></div>
+  </div>
+</header>
+
+<!-- LAYOUT -->
+<div id="layout">
+
+  <!-- SIDEBAR -->
+  <nav id="sidebar">
+    <div class="nav-section-label">Navigation</div>
+    <a href="#top" class="nav-item active">Overview</a>
+    <div class="nav-divider"></div>
+    <div class="nav-section-label">Sections</div>
+    <a href="#s1" class="nav-item">1. Mission &amp; Purpose</a>
+    <a href="#s2" class="nav-item">2. Content Scope</a>
+    <a href="#s2-tiers" class="nav-item sub">↳ Content Tiers</a>
+    <a href="#s3" class="nav-item">3. Writing for the Web</a>
+    <a href="#s4" class="nav-item">4. Language &amp; Grammar</a>
+    <a href="#s4-plain" class="nav-item sub">↳ Plain Language</a>
+    <a href="#s4-voice" class="nav-item sub">↳ Active Voice</a>
+    <a href="#s5" class="nav-item">5. Acronyms &amp; Abbreviations</a>
+    <a href="#s5-rules" class="nav-item sub">↳ General Rules</a>
+    <a href="#s5-pending" class="nav-item sub">↳ Pending Decisions</a>
+    <a href="#s5-ref" class="nav-item sub">↳ Acronym Reference</a>
+    <a href="#s6" class="nav-item">6. Legal-Specific Guidelines</a>
+    <a href="#s7" class="nav-item">7. Formatting &amp; Visuals</a>
+    <a href="#s8" class="nav-item">8. Pennsylvania-Specific</a>
+    <a href="#s9" class="nav-item">9. Accessibility</a>
+    <a href="#s10" class="nav-item">10. Content Maintenance</a>
+    <div class="nav-divider"></div>
+    <a href="#quickref" class="nav-item">&#9889; Quick Reference Card</a>
+  </nav>
+
+  <!-- MAIN -->
+  <main id="main">
+    <div id="top"></div>
+
+    <!-- HERO -->
+    <div class="page-hero">
+      <div class="hero-org">Pennsylvania Legal Aid Network</div>
+      <div class="hero-title">PALawHelp.org<br>Editorial Style Guide</div>
+      <div class="hero-subtitle">For content creators, editors, and partner organizations</div>
+      <div class="hero-meta">
+        <span class="hero-badge">Version 1.0</span>
+        <span class="hero-badge">2025</span>
+        <span class="hero-badge">WCAG 2.1 AAA</span>
+        <span class="hero-badge">Plain Language Standard</span>
+      </div>
+    </div>
+
+    <!-- ── SECTION 1 ─────────────────────────────────────── -->
+    <section class="guide-section" id="s1">
+      <div class="section-header">
+        <div class="section-number">1</div>
+        <div class="section-title">Mission &amp; Purpose</div>
+      </div>
+      <p>This guide helps creators, editors, and partners develop clear, consistent, and user-friendly legal information for the people of Pennsylvania. Our primary goal is to make complex legal concepts accessible to everyone, regardless of background or education level.</p>
+
+      <h3>Core Principles</h3>
+      <div class="principle-grid">
+        <div class="principle-card">
+          <div class="principle-name">User-First</div>
+          <div class="principle-desc">Write for the person seeking help, not for legal professionals. Assume the reader is stressed, short on time, and may have limited literacy skills.</div>
+        </div>
+        <div class="principle-card">
+          <div class="principle-name">Clarity Over Complexity</div>
+          <div class="principle-desc">Use plain language. Explain necessary legal terms simply. Swap jargon for everyday words and define terms you can't avoid.</div>
+        </div>
+        <div class="principle-card">
+          <div class="principle-name">Action-Oriented</div>
+          <div class="principle-desc">Tell users what steps they can take. Every page should end with a clear next step or call to action.</div>
+        </div>
+        <div class="principle-card">
+          <div class="principle-name">Accuracy is Paramount</div>
+          <div class="principle-desc">All legal information must be legally accurate and up to date. Always include a "Last Updated" date and content source.</div>
+        </div>
+        <div class="principle-card">
+          <div class="principle-name">Neutral &amp; Professional</div>
+          <div class="principle-desc">Maintain a respectful, empathetic tone. Avoid sensationalism or political bias.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SECTION 2 ─────────────────────────────────────── -->
+    <section class="guide-section" id="s2">
+      <div class="section-header">
+        <div class="section-number">2</div>
+        <div class="section-title">Content Scope</div>
+      </div>
+      <p>Content decisions should be strategic and focused on our core audience: low-income Pennsylvanians with civil legal needs.</p>
+
+      <h3>Primary Criteria for Inclusion</h3>
+      <p>Include content only if it meets <strong>all four</strong> of the following criteria:</p>
+      <ol>
+        <li><strong>Serves a Core Legal Need</strong> — addresses a critical civil legal issue (housing, family law, consumer debt, public benefits, employment).</li>
+        <li><strong>Empowers User Action</strong> — helps a person understand rights, navigate a process, or take a concrete step.</li>
+        <li><strong>Fills a Documented Gap</strong> — not already covered comprehensively by a reliable, accessible source. We complement; we don't duplicate unless our version is significantly more user-friendly.</li>
+        <li><strong>Is Within Our Expertise</strong> — we have or can access the legal expertise to create and maintain accurate content.</li>
+      </ol>
+
+      <h3>Decision-Making Questions</h3>
+      <p>Ask these before creating any new content:</p>
+      <ol>
+        <li>Who is the specific user? Describe the person and their situation.</li>
+        <li>What is the user's goal? What single thing do they need to accomplish?</li>
+        <li>Is this the right place for this information?</li>
+        <li>Can we maintain it? If we cannot commit to reviewing it at least annually, do not publish it.</li>
+      </ol>
+
+      <div class="callout info">
+        <span class="callout-icon">ℹ️</span>
+        <div>
+          <span class="callout-label">Routing Guide</span>
+          <strong>Basic public services</strong> (food banks, library cards) → Link to 211 or the relevant agency.<br>
+          <strong>Highly complex, case-specific strategies</strong> → Provide basics and a strong referral to legal help.<br>
+          <strong>News or advocacy updates</strong> → Consider a blog post or news alert rather than a permanent resource page.
+        </div>
+      </div>
+
+      <h3 id="s2-tiers">Content Tiers</h3>
+      <div class="tier-cards">
+        <div class="tier-card t1">
+          <div class="tier-badge">&#9679; High Priority</div>
+          <div class="tier-name">Tier 1: Core Self-Help</div>
+          <div class="tier-desc">Step-by-step guides, legal process explainers, common forms with instructions. Allows a person to take action without a lawyer.</div>
+        </div>
+        <div class="tier-card t2">
+          <div class="tier-badge">&#9679; High Priority</div>
+          <div class="tier-name">Tier 2: Know Your Rights &amp; Referrals</div>
+          <div class="tier-desc">Overviews of legal rights and pathways to help. Helps users understand their situation and find the right assistance.</div>
+        </div>
+        <div class="tier-card t3">
+          <div class="tier-badge">&#9679; Lower Priority</div>
+          <div class="tier-name">Tier 3: Context &amp; Awareness</div>
+          <div class="tier-desc">General legal news, community resource lists, or information about non-legal problems with a legal dimension.</div>
+        </div>
+      </div>
+      <div class="callout principle">
+        <span class="callout-icon">&#128161;</span>
+        <div>
+          <span class="callout-label">Guiding Principle</span>
+          When in doubt, prioritize Tier 1 and Tier 2. Our unique value is providing actionable, reliable legal information that directly helps people resolve their civil legal problems.
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SECTION 3 ─────────────────────────────────────── -->
+    <section class="guide-section" id="s3">
+      <div class="section-header">
+        <div class="section-number">3</div>
+        <div class="section-title">Writing for the Web</div>
+      </div>
+
+      <h3>Readability</h3>
+      <ul>
+        <li><strong>Target reading level:</strong> 8th grade or lower. Use Hemingway Editor or Microsoft Word's readability checker.</li>
+        <li><strong>Sentence length:</strong> Keep under 25 words.</li>
+        <li><strong>Paragraph length:</strong> Maximum 3–4 sentences.</li>
+        <li>Use bulleted or numbered lists liberally.</li>
+        <li>Use clear, descriptive headings (H2, H3) to allow scanning.</li>
+      </ul>
+
+      <h3>Page Structure</h3>
+      <ul>
+        <li><strong>Inverted Pyramid</strong> — Start with the most important information (the conclusion or key action). Follow with supporting details. End with background.</li>
+        <li><strong>The One-Thing Test</strong> — Every page should answer: "What is the one thing I want the user to know or do after reading this?"</li>
+        <li><strong>Use White Space</strong> — Ample white space makes text less intimidating and easier to read.</li>
+      </ul>
+    </section>
+
+    <!-- ── SECTION 4 ─────────────────────────────────────── -->
+    <section class="guide-section" id="s4">
+      <div class="section-header">
+        <div class="section-number">4</div>
+        <div class="section-title">Language &amp; Grammar</div>
+      </div>
+
+      <h3 id="s4-plain">Plain Language: Word Substitutions</h3>
+      <p>Replace complex or formal words with simple, everyday alternatives.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Avoid</th><th>Use Instead</th></tr></thead>
+          <tbody>
+            <tr><td>commence, initiate</td><td>begin, start</td></tr>
+            <tr><td>utilize</td><td>use</td></tr>
+            <tr><td>pursuant to</td><td>under, according to</td></tr>
+            <tr><td>prior to</td><td>before</td></tr>
+            <tr><td>reside</td><td>live</td></tr>
+            <tr><td>terminate</td><td>end, stop</td></tr>
+            <tr><td>individual</td><td>person</td></tr>
+            <tr><td>ascertain</td><td>find out</td></tr>
+            <tr><td>obtain</td><td>get</td></tr>
+            <tr><td>in order to</td><td>to</td></tr>
+            <tr><td>at this point in time</td><td>now</td></tr>
+            <tr><td>due to the fact that</td><td>because</td></tr>
+            <tr><td>subsequent to</td><td>after</td></tr>
+            <tr><td>in the event that</td><td>if</td></tr>
+            <tr><td>notwithstanding</td><td>despite, even though</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 id="s4-voice">Active Voice</h3>
+      <p>Use active voice to make sentences clearer and more direct.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Passive (Avoid)</th><th>Active (Use)</th></tr></thead>
+          <tbody>
+            <tr><td>The forms must be completed by you.</td><td>You must complete the forms.</td></tr>
+            <tr><td>A hearing will be scheduled by the court.</td><td>The court will schedule a hearing.</td></tr>
+            <tr><td>The application can be submitted online.</td><td>You can submit the application online.</td></tr>
+            <tr><td>Benefits may be terminated if…</td><td>Your benefits may end if…</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Personal Pronouns</h3>
+      <ul>
+        <li>Use <strong>"you"</strong> and <strong>"your"</strong> to speak directly to the user.</li>
+        <li>Avoid "he/she" or "s/he."</li>
+        <li>Use <strong>"they/them"</strong> as a singular pronoun when gender is unknown or unspecified.</li>
+        <li>Use "the court," "the judge," "the landlord" — not "he" or "she" — when referring to roles.</li>
+      </ul>
+    </section>
+
+    <!-- ── SECTION 5 ─────────────────────────────────────── -->
+    <section class="guide-section" id="s5">
+      <div class="section-header">
+        <div class="section-number">5</div>
+        <div class="section-title">Acronyms &amp; Abbreviations</div>
+      </div>
+      <p>Acronyms can confuse users who are unfamiliar with legal and government terminology. Follow these rules consistently across all content.</p>
+
+      <h3 id="s5-rules">General Rules</h3>
+      <ol>
+        <li><strong>Spell out the full term on first use,</strong> followed by the acronym in parentheses. Example: "Protection From Abuse (PFA) order." After that, you may use PFA alone.</li>
+        <li>On short pages (under 500 words), spell out the full term every time if you only use it once or twice.</li>
+        <li>In page titles and headings, use the spelled-out term or most commonly known version. Do not start a heading with an acronym the user has not yet seen.</li>
+        <li>When writing for non-legal audiences, prefer the plain-language name even when an acronym is widely used internally.</li>
+        <li><strong>Do not use periods in acronyms</strong> (SNAP, not S.N.A.P.).</li>
+      </ol>
+
+      <h3 id="s5-pending">Preferred Terms: Pending Decisions</h3>
+      <p>The following terms have pending team decisions. Use the flagged option until a decision is made, then update this guide.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Term</th><th>Options</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Magisterial District Judge</strong></td>
+              <td>MDJ vs. District Justice (older term, still used colloquially)</td>
+              <td><span class="status-badge status-pending">Pending</span> Use "Magisterial District Judge (MDJ)" until resolved.</td>
+            </tr>
+            <tr>
+              <td><strong>Child protective services agency</strong></td>
+              <td>CYS (county) vs. OCYF (state office)</td>
+              <td><span class="status-badge status-pending">Pending</span> Distinguish by context: CYS = county agency; OCYF = state office.</td>
+            </tr>
+            <tr>
+              <td><strong>Federal poverty measure</strong></td>
+              <td>FPL (Federal Poverty Level) vs. FPG (Federal Poverty Guidelines)</td>
+              <td><span class="status-badge status-pending">Pending</span> FPG is technically correct. Use FPL only when quoting a source that uses it.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 id="s5-ref">Acronym Reference</h3>
+      <p>Always spell out on first use per Rule 5.1. Click a category to expand.</p>
+
+      <!-- PA Courts -->
+      <div class="acronym-cat open" id="cat-courts">
+        <div class="acronym-cat-header" onclick="toggleCat('cat-courts')">
+          <span class="acronym-cat-title">&#9878; Pennsylvania Courts</span>
+          <span class="acronym-cat-count">6 terms</span>
+          <span class="chevron">&#9660;</span>
+        </div>
+        <div class="acronym-cat-body">
+          <div class="table-wrap" style="margin:0;border:none;border-radius:0;box-shadow:none;">
+            <table>
+              <thead><tr><th>Acronym / Short Form</th><th>Full Name</th></tr></thead>
+              <tbody>
+                <tr><td><strong>MDJ / Magisterial District Court</strong></td><td>Magisterial District Court (previously District Justice)</td></tr>
+                <tr><td><strong>CCP</strong></td><td>Court of Common Pleas</td></tr>
+                <tr><td><strong>Superior Court</strong></td><td>Pennsylvania Superior Court (intermediate appellate)</td></tr>
+                <tr><td><strong>Commonwealth Court</strong></td><td>Pennsylvania Commonwealth Court (government/admin appeals)</td></tr>
+                <tr><td><strong>Supreme Court of PA</strong></td><td>Supreme Court of Pennsylvania</td></tr>
+                <tr><td><strong>OAH</strong></td><td>Office of Administrative Hearings (state agency appeals)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- State Agencies -->
+      <div class="acronym-cat" id="cat-state">
+        <div class="acronym-cat-header" onclick="toggleCat('cat-state')">
+          <span class="acronym-cat-title">&#127968; State Agencies &amp; Programs</span>
+          <span class="acronym-cat-count">18 terms</span>
+          <span class="chevron">&#9660;</span>
+        </div>
+        <div class="acronym-cat-body">
+          <div class="table-wrap" style="margin:0;border:none;border-radius:0;box-shadow:none;">
+            <table>
+              <thead><tr><th>Acronym / Short Form</th><th>Full Name</th></tr></thead>
+              <tbody>
+                <tr><td><strong>DHS</strong></td><td>Pennsylvania Department of Human Services</td></tr>
+                <tr><td><strong>DOL / L&amp;I</strong></td><td>Pennsylvania Department of Labor &amp; Industry</td></tr>
+                <tr><td><strong>PennDOT</strong></td><td>Pennsylvania Department of Transportation</td></tr>
+                <tr><td><strong>OAG</strong></td><td>Pennsylvania Office of Attorney General</td></tr>
+                <tr><td><strong>PHFA</strong></td><td>Pennsylvania Housing Finance Agency</td></tr>
+                <tr><td><strong>LIHEAP</strong></td><td>Low Income Home Energy Assistance Program</td></tr>
+                <tr><td><strong>CHIP</strong></td><td>Children's Health Insurance Program</td></tr>
+                <tr><td><strong>MA / Medicaid</strong></td><td>Medical Assistance (Pennsylvania's Medicaid program)</td></tr>
+                <tr><td><strong>SNAP</strong></td><td>Supplemental Nutrition Assistance Program (formerly "food stamps")</td></tr>
+                <tr><td><strong>TANF</strong></td><td>Temporary Assistance for Needy Families</td></tr>
+                <tr><td><strong>SSI</strong></td><td>Supplemental Security Income</td></tr>
+                <tr><td><strong>SSDI</strong></td><td>Social Security Disability Insurance</td></tr>
+                <tr><td><strong>WIC</strong></td><td>Women, Infants, and Children nutrition program</td></tr>
+                <tr><td><strong>OCYF</strong></td><td>Office of Children, Youth and Families (state)</td></tr>
+                <tr><td><strong>CYS</strong></td><td>Children and Youth Services (county-level)</td></tr>
+                <tr><td><strong>OVR</strong></td><td>Office of Vocational Rehabilitation</td></tr>
+                <tr><td><strong>COMPASS</strong></td><td>Commonwealth of Pennsylvania Access to Social Services (benefits portal)</td></tr>
+                <tr><td><strong>PACSES</strong></td><td>Pennsylvania Child Support Enforcement System</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Legal Aid -->
+      <div class="acronym-cat" id="cat-legalaid">
+        <div class="acronym-cat-header" onclick="toggleCat('cat-legalaid')">
+          <span class="acronym-cat-title">&#9878; Legal Aid &amp; Access to Justice</span>
+          <span class="acronym-cat-count">11 terms</span>
+          <span class="chevron">&#9660;</span>
+        </div>
+        <div class="acronym-cat-body">
+          <div class="table-wrap" style="margin:0;border:none;border-radius:0;box-shadow:none;">
+            <table>
+              <thead><tr><th>Acronym / Short Form</th><th>Full Name</th></tr></thead>
+              <tbody>
+                <tr><td><strong>PLAN</strong></td><td>Pennsylvania Legal Aid Network</td></tr>
+                <tr><td><strong>LSC</strong></td><td>Legal Services Corporation (federal funding agency)</td></tr>
+                <tr><td><strong>MLP</strong></td><td>Medical-Legal Partnership</td></tr>
+                <tr><td><strong>IOLTA</strong></td><td>Interest on Lawyers' Trust Accounts</td></tr>
+                <tr><td><strong>PBA</strong></td><td>Pennsylvania Bar Association</td></tr>
+                <tr><td><strong>LAP</strong></td><td>Lawyer Assistance Program</td></tr>
+                <tr><td><strong>CLAS</strong></td><td>Civil Legal Aid Services</td></tr>
+                <tr><td><strong>ATJ</strong></td><td>Access to Justice</td></tr>
+                <tr><td><strong>Pro se</strong></td><td>Self-represented litigant (spell out; avoid Latin where possible)</td></tr>
+                <tr><td><strong>Pro bono</strong></td><td>Free legal services (acceptable to use; define on first use for lay audiences)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Legal Terms -->
+      <div class="acronym-cat" id="cat-legal">
+        <div class="acronym-cat-header" onclick="toggleCat('cat-legal')">
+          <span class="acronym-cat-title">&#128218; Legal Terms &amp; Processes</span>
+          <span class="acronym-cat-count">19 terms</span>
+          <span class="chevron">&#9660;</span>
+        </div>
+        <div class="acronym-cat-body">
+          <div class="table-wrap" style="margin:0;border:none;border-radius:0;box-shadow:none;">
+            <table>
+              <thead><tr><th>Acronym / Short Form</th><th>Full Name / Note</th></tr></thead>
+              <tbody>
+                <tr><td><strong>PFA</strong></td><td>Protection From Abuse (order)</td></tr>
+                <tr><td><strong>PFH</strong></td><td>Protection From Harassment (order)</td></tr>
+                <tr><td><strong>PFAD</strong></td><td>Protection From Abuse for Dating Partners</td></tr>
+                <tr><td><strong>SORNA</strong></td><td>Sexual Offender Registration and Notification Act</td></tr>
+                <tr><td><strong>ARD</strong></td><td>Accelerated Rehabilitative Disposition (criminal diversion program)</td></tr>
+                <tr><td><strong>OTN</strong></td><td>Offense Tracking Number</td></tr>
+                <tr><td><strong>SCI</strong></td><td>State Correctional Institution</td></tr>
+                <tr><td><strong>PCRA</strong></td><td>Post Conviction Relief Act</td></tr>
+                <tr><td><strong>UCC</strong></td><td>Uniform Commercial Code</td></tr>
+                <tr><td><strong>UDAP</strong></td><td>Unfair or Deceptive Acts or Practices</td></tr>
+                <tr><td><strong>FDCPA</strong></td><td>Fair Debt Collection Practices Act</td></tr>
+                <tr><td><strong>FCRA</strong></td><td>Fair Credit Reporting Act</td></tr>
+                <tr><td><strong>SCRA</strong></td><td>Servicemembers Civil Relief Act</td></tr>
+                <tr><td><strong>VAWA</strong></td><td>Violence Against Women Act</td></tr>
+                <tr><td><strong>ADA</strong></td><td>Americans with Disabilities Act</td></tr>
+                <tr><td><strong>FMLA</strong></td><td>Family and Medical Leave Act</td></tr>
+                <tr><td><strong>IDEA</strong></td><td>Individuals with Disabilities Education Act</td></tr>
+                <tr><td><strong>IEP</strong></td><td>Individualized Education Program</td></tr>
+                <tr><td><strong>504 Plan</strong></td><td>Accommodation plan under Section 504 of the Rehabilitation Act</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Federal Agencies -->
+      <div class="acronym-cat" id="cat-federal">
+        <div class="acronym-cat-header" onclick="toggleCat('cat-federal')">
+          <span class="acronym-cat-title">&#127963; Federal Agencies</span>
+          <span class="acronym-cat-count">11 terms</span>
+          <span class="chevron">&#9660;</span>
+        </div>
+        <div class="acronym-cat-body">
+          <div class="table-wrap" style="margin:0;border:none;border-radius:0;box-shadow:none;">
+            <table>
+              <thead><tr><th>Acronym</th><th>Full Name</th></tr></thead>
+              <tbody>
+                <tr><td><strong>SSA</strong></td><td>Social Security Administration</td></tr>
+                <tr><td><strong>HUD</strong></td><td>U.S. Department of Housing and Urban Development</td></tr>
+                <tr><td><strong>USCIS</strong></td><td>U.S. Citizenship and Immigration Services</td></tr>
+                <tr><td><strong>ICE</strong></td><td>U.S. Immigration and Customs Enforcement</td></tr>
+                <tr><td><strong>DOE / ED</strong></td><td>U.S. Department of Education</td></tr>
+                <tr><td><strong>CFPB</strong></td><td>Consumer Financial Protection Bureau</td></tr>
+                <tr><td><strong>EEOC</strong></td><td>Equal Employment Opportunity Commission</td></tr>
+                <tr><td><strong>IRS</strong></td><td>Internal Revenue Service</td></tr>
+                <tr><td><strong>VA</strong></td><td>U.S. Department of Veterans Affairs</td></tr>
+                <tr><td><strong>USDA</strong></td><td>U.S. Department of Agriculture</td></tr>
+                <tr><td><strong>FPL / FPG</strong></td><td>Federal Poverty Level / Federal Poverty Guidelines (see Section 5.2)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SECTION 6 ─────────────────────────────────────── -->
+    <section class="guide-section" id="s6">
+      <div class="section-header">
+        <div class="section-number">6</div>
+        <div class="section-title">Legal-Specific Guidelines</div>
+      </div>
+
+      <h3>Explaining Legal Terms</h3>
+      <ul>
+        <li><strong>Bold a legal term on its first use</strong> and provide a plain-language definition immediately.</li>
+        <li>Example: A <strong>complaint</strong> is the first legal document filed in a lawsuit. It explains the facts and the reasons the plaintiff is suing the defendant.</li>
+        <li>Avoid Latin terms. Use plain English equivalents where possible.</li>
+      </ul>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Avoid (Latin)</th><th>Use Instead</th></tr></thead>
+          <tbody>
+            <tr><td>in loco parentis</td><td>in place of a parent</td></tr>
+            <tr><td>pro se</td><td>self-represented, representing yourself</td></tr>
+            <tr><td>habeas corpus</td><td>a court order to release someone from unlawful detention</td></tr>
+            <tr><td>voir dire</td><td>jury selection process</td></tr>
+            <tr><td>prima facie</td><td>at first look, on its face</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Citations</h3>
+      <ul>
+        <li>Keep citations simple and unobtrusive.</li>
+        <li>Format: <em>"Under 23 Pa.C.S. § 4321, …"</em> and link to the statute on the Pennsylvania General Assembly website.</li>
+        <li>Avoid long strings of case citations in public-facing content.</li>
+      </ul>
+
+      <h3>Standard Disclaimer</h3>
+      <p>Include the following on <strong>every page</strong> with legal information:</p>
+      <div class="callout warning">
+        <span class="callout-icon">&#9888;&#65039;</span>
+        <div>
+          <span class="callout-label">Required Disclaimer</span>
+          This website provides legal information, not legal advice. We make every effort to ensure the accuracy of the information, but it may not apply to your specific situation. We encourage you to consult with a lawyer for advice about your individual case.
+        </div>
+      </div>
+      <ul>
+        <li>Always distinguish between an attorney and a non-attorney (paralegal, navigator, etc.).</li>
+        <li>Clearly state the date of last review on each page.</li>
+      </ul>
+    </section>
+
+    <!-- ── SECTION 7 ─────────────────────────────────────── -->
+    <section class="guide-section" id="s7">
+      <div class="section-header">
+        <div class="section-number">7</div>
+        <div class="section-title">Formatting &amp; Visuals</div>
+      </div>
+
+      <h3>Links</h3>
+      <p>Use descriptive link text. <strong>Never use "click here."</strong></p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Avoid</th><th>Use Instead</th></tr></thead>
+          <tbody>
+            <tr><td>To file for custody, click here.</td><td>Learn more about filing for custody.</td></tr>
+            <tr><td>Click here for the form.</td><td>Download PA Form CN-101: Complaint for Custody.</td></tr>
+            <tr><td>More information here.</td><td>See the Pennsylvania court's self-help guide.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul>
+        <li>External links (to courts, state agencies, etc.) should open in a new tab to keep PALawHelp.org open.</li>
+      </ul>
+
+      <h3>Calls to Action (CTAs)</h3>
+      <p>Make CTAs clear and action-oriented. Lead with a verb.</p>
+      <ul>
+        <li>Find Legal Help</li>
+        <li>Download the Form</li>
+        <li>See if You Qualify</li>
+        <li>Get Help With Your Eviction</li>
+        <li>Request a Fee Waiver</li>
+      </ul>
+
+      <h3>Lists</h3>
+      <ul>
+        <li>Use <strong>bulleted lists</strong> for unordered items (options, considerations).</li>
+        <li>Use <strong>numbered lists</strong> for sequential steps (instructions, processes).</li>
+        <li>Keep list items parallel in structure — start each with the same part of speech.</li>
+        <li>Avoid lists of more than 7–8 items. Break into subgroups with a subheading if needed.</li>
+      </ul>
+    </section>
+
+    <!-- ── SECTION 8 ─────────────────────────────────────── -->
+    <section class="guide-section" id="s8">
+      <div class="section-header">
+        <div class="section-number">8</div>
+        <div class="section-title">Pennsylvania-Specific Content</div>
+      </div>
+
+      <h3>Court Names</h3>
+      <p>Use correct, official Pennsylvania court names at all times.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Court</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Magisterial District Court</strong></td><td>Lowest level of PA courts. Handles minor civil and criminal cases. Judge is called a "Magisterial District Judge" (MDJ).</td></tr>
+            <tr><td><strong>Court of Common Pleas (CCP)</strong></td><td>General trial court at county level. Most civil and criminal cases.</td></tr>
+            <tr><td><strong>Superior Court</strong></td><td>Intermediate appellate court. Hears appeals from CCP in most civil and criminal matters.</td></tr>
+            <tr><td><strong>Commonwealth Court</strong></td><td>Hears appeals involving state government, administrative agencies, and regulatory matters.</td></tr>
+            <tr><td><strong>Supreme Court of Pennsylvania</strong></td><td>Highest court in the state.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Forms</h3>
+      <ul>
+        <li>Always specify the correct Pennsylvania form number and name. Example: "PA Form CN-101: Complaint for Custody."</li>
+        <li>Link directly to the form on the appropriate court or county website when possible.</li>
+        <li>Note when forms vary by county.</li>
+      </ul>
+
+      <h3>Geographic Scope</h3>
+      <ul>
+        <li>Be explicit when information varies by county: <em>"Procedures can differ by county. Contact your local county court for specific rules."</em></li>
+        <li>Use the site's "Find Your County" functionality prominently when applicable.</li>
+        <li>Do not assume Philadelphia or Pittsburgh rules apply statewide.</li>
+      </ul>
+    </section>
+
+    <!-- ── SECTION 9 ─────────────────────────────────────── -->
+    <section class="guide-section" id="s9">
+      <div class="section-header">
+        <div class="section-number">9</div>
+        <div class="section-title">Accessibility</div>
+      </div>
+      <p>All content must meet <strong>WCAG 2.1 AAA</strong> standards.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Requirement</th><th>What to Do</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Alt Text</strong></td><td>All images must have descriptive alternative text that conveys the image's meaning, not just its appearance.</td></tr>
+            <tr><td><strong>Heading Hierarchy</strong></td><td>Use heading levels (H1, H2, H3) in logical order. Never skip levels. Screen readers rely on these for navigation.</td></tr>
+            <tr><td><strong>Color as Meaning</strong></td><td>Do not use color alone to convey meaning (e.g., don't say "items in red are required" — add an asterisk or label).</td></tr>
+            <tr><td><strong>Link Context</strong></td><td>Link text must make sense out of context. Screen reader users often tab through links only.</td></tr>
+            <tr><td><strong>Video / Audio</strong></td><td>Provide transcripts for all audio content. Provide captions for all video content.</td></tr>
+            <tr><td><strong>Reading Level</strong></td><td>Target 8th grade or lower. Benefits users with cognitive disabilities, low literacy, and non-native English speakers.</td></tr>
+            <tr><td><strong>Contrast Ratio</strong></td><td>Body text: minimum 7:1 (AAA). Large text (18pt+ or 14pt bold): minimum 4.5:1.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ── SECTION 10 ────────────────────────────────────── -->
+    <section class="guide-section" id="s10">
+      <div class="section-header">
+        <div class="section-number">10</div>
+        <div class="section-title">Content Maintenance</div>
+      </div>
+
+      <h3>Review Cycle</h3>
+      <ul>
+        <li>All content must have a <strong>"Last Updated"</strong> date displayed publicly.</li>
+        <li>Establish a review schedule on publication — at minimum annually for Tier 1 and Tier 2 content.</li>
+        <li>Content owners are responsible for initiating reviews or flagging content that needs legal SME review.</li>
+        <li>Legal changes (new legislation, rule changes, court decisions) may trigger off-cycle review.</li>
+      </ul>
+
+      <h3>Archiving and Removal</h3>
+      <ul>
+        <li>Outdated content should be archived or removed to prevent user confusion.</li>
+        <li>Do not leave stale content live without a clear notice.</li>
+        <li>If a page is superseded by new content or a new law, redirect the old URL where possible.</li>
+        <li>Tier 3 content (news, alerts) should be reviewed most frequently.</li>
+      </ul>
+
+      <h3>Content Status in Editorial Workflow</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Status</th><th>Meaning</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Requested</strong></td><td>Content need identified; not yet assigned.</td></tr>
+            <tr><td><strong>In Progress</strong></td><td>Content being drafted by PLAN staff or partner.</td></tr>
+            <tr><td><strong>SME Review</strong></td><td>Submitted to subject matter expert for legal accuracy review.</td></tr>
+            <tr><td><strong>Edits in Progress</strong></td><td>Revisions underway based on SME or editorial feedback.</td></tr>
+            <tr><td><strong>Final Review</strong></td><td>Ready for final editorial/accessibility check before publish.</td></tr>
+            <tr><td><strong>Published</strong></td><td>Live on PALawHelp.org.</td></tr>
+            <tr><td><strong>Needs Update</strong></td><td>Published but flagged for review due to legal or content changes.</td></tr>
+            <tr><td><strong>Archived</strong></td><td>Removed from live site; retained for reference.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ── QUICK REF ──────────────────────────────────────── -->
+    <section class="guide-section" id="quickref">
+      <div class="section-header">
+        <div class="section-number">&#9889;</div>
+        <div class="section-title">Quick Reference Card</div>
+      </div>
+      <p>A one-glance summary of the most frequently needed rules.</p>
+      <div class="quick-ref-grid">
+        <div class="qr-item"><div class="qr-rule">Reading level target</div><div class="qr-answer">8th grade or lower</div></div>
+        <div class="qr-item"><div class="qr-rule">Max sentence length</div><div class="qr-answer">25 words</div></div>
+        <div class="qr-item"><div class="qr-rule">Max paragraph length</div><div class="qr-answer">3–4 sentences</div></div>
+        <div class="qr-item"><div class="qr-rule">Acronyms: first use</div><div class="qr-answer">Full name (Acronym) — e.g., Protection From Abuse (PFA)</div></div>
+        <div class="qr-item"><div class="qr-rule">Legal terms: first use</div><div class="qr-answer">Bold the term + plain-language definition immediately after</div></div>
+        <div class="qr-item"><div class="qr-rule">Latin terms</div><div class="qr-answer">Avoid — use English equivalent</div></div>
+        <div class="qr-item"><div class="qr-rule">Link text</div><div class="qr-answer">Descriptive — never "click here"</div></div>
+        <div class="qr-item"><div class="qr-rule">Active vs. passive</div><div class="qr-answer">Always prefer active voice</div></div>
+        <div class="qr-item"><div class="qr-rule">Pronoun for unknown gender</div><div class="qr-answer">they / them</div></div>
+        <div class="qr-item"><div class="qr-rule">Disclaimer required?</div><div class="qr-answer">Yes — on every page with legal information</div></div>
+        <div class="qr-item"><div class="qr-rule">Last Updated date</div><div class="qr-answer">Required on every page</div></div>
+        <div class="qr-item"><div class="qr-rule">Review cycle</div><div class="qr-answer">Minimum annually</div></div>
+        <div class="qr-item"><div class="qr-rule">Color alone for meaning</div><div class="qr-answer">Never — add a label or symbol</div></div>
+        <div class="qr-item"><div class="qr-rule">Heading hierarchy</div><div class="qr-answer">Never skip levels (H1 → H2 → H3)</div></div>
+        <div class="qr-item"><div class="qr-rule">Alt text on images</div><div class="qr-answer">Required — describe the meaning, not just the content</div></div>
+        <div class="qr-item"><div class="qr-rule">Contrast ratio (body)</div><div class="qr-answer">Minimum 7:1 (WCAG AAA)</div></div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- BACK TO TOP -->
+<button id="back-to-top" title="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8679;</button>
+
+<script>
+// ── ACCORDION ──────────────────────────────────────────────
+function toggleCat(id) {
+  const el = document.getElementById(id);
+  el.classList.toggle('open');
+}
+
+// ── BACK TO TOP ────────────────────────────────────────────
+const btt = document.getElementById('back-to-top');
+window.addEventListener('scroll', () => {
+  btt.classList.toggle('visible', window.scrollY > 400);
+});
+
+// ── ACTIVE NAV ─────────────────────────────────────────────
+const sections = document.querySelectorAll('.guide-section, #top');
+const navLinks = document.querySelectorAll('#sidebar .nav-item');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      navLinks.forEach(a => {
+        a.classList.remove('active');
+        const href = a.getAttribute('href').replace('#','');
+        if (href === id || (id === 'top' && href === 'top')) {
+          a.classList.add('active');
+        }
+      });
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+
+sections.forEach(s => observer.observe(s));
+
+// ── SEARCH ─────────────────────────────────────────────────
+const searchData = [
+  { section: "1. Mission", title: "Core Principles", anchor: "s1", text: "user-first clarity action-oriented accuracy neutral professional" },
+  { section: "2. Content Scope", title: "Inclusion Criteria", anchor: "s2", text: "core legal need empowers user action fills gap expertise" },
+  { section: "2. Content Scope", title: "Content Tiers", anchor: "s2-tiers", text: "tier 1 self-help tier 2 know your rights tier 3 context awareness" },
+  { section: "3. Writing for the Web", title: "Readability", anchor: "s3", text: "8th grade reading level sentence length paragraph headings" },
+  { section: "3. Writing for the Web", title: "Page Structure", anchor: "s3", text: "inverted pyramid one-thing test white space" },
+  { section: "4. Language & Grammar", title: "Plain Language Word Substitutions", anchor: "s4-plain", text: "commence utilize pursuant to prior to reside terminate individual ascertain obtain" },
+  { section: "4. Language & Grammar", title: "Active Voice", anchor: "s4-voice", text: "passive active voice direct sentences" },
+  { section: "4. Language & Grammar", title: "Personal Pronouns", anchor: "s4", text: "you your they them gender unknown singular pronoun" },
+  { section: "5. Acronyms", title: "General Rules", anchor: "s5-rules", text: "spell out first use parentheses no periods SNAP PFA" },
+  { section: "5. Acronyms", title: "Pending Decisions: MDJ / CYS / FPL", anchor: "s5-pending", text: "MDJ district justice CYS OCYF FPL FPG pending unresolved" },
+  { section: "5. Acronyms", title: "PA Courts Reference", anchor: "cat-courts", text: "MDJ CCP superior court commonwealth court OAH magisterial district" },
+  { section: "5. Acronyms", title: "State Agencies Reference", anchor: "cat-state", text: "DHS L&I LIHEAP CHIP Medicaid SNAP TANF SSI SSDI WIC OCYF CYS COMPASS PACSES PHFA" },
+  { section: "5. Acronyms", title: "Legal Aid Reference", anchor: "cat-legalaid", text: "PLAN LSC MLP IOLTA PBA ATJ pro se pro bono" },
+  { section: "5. Acronyms", title: "Legal Terms Reference", anchor: "cat-legal", text: "PFA PFH ARD PCRA FDCPA FCRA ADA FMLA IDEA IEP 504 VAWA SCRA SORNA" },
+  { section: "5. Acronyms", title: "Federal Agencies Reference", anchor: "cat-federal", text: "SSA HUD USCIS ICE DOE CFPB EEOC IRS VA USDA FPL FPG" },
+  { section: "6. Legal Guidelines", title: "Explaining Legal Terms", anchor: "s6", text: "bold first use plain language definition Latin in loco parentis pro se" },
+  { section: "6. Legal Guidelines", title: "Standard Disclaimer", anchor: "s6", text: "disclaimer legal information not legal advice consult lawyer" },
+  { section: "6. Legal Guidelines", title: "Citations", anchor: "s6", text: "Pa.C.S. statute citation Pennsylvania General Assembly" },
+  { section: "7. Formatting", title: "Links & CTAs", anchor: "s7", text: "click here descriptive link text call to action find legal help download form" },
+  { section: "7. Formatting", title: "Lists", anchor: "s7", text: "bulleted numbered ordered unordered parallel structure" },
+  { section: "8. PA-Specific", title: "Court Names", anchor: "s8", text: "common pleas superior court commonwealth court magisterial district MDJ" },
+  { section: "8. PA-Specific", title: "Forms & Geography", anchor: "s8", text: "PA form CN-101 county vary geographic scope find your county Philadelphia Pittsburgh" },
+  { section: "9. Accessibility", title: "WCAG 2.1 AAA Requirements", anchor: "s9", text: "alt text headings contrast ratio 7:1 captions transcripts color meaning screen reader" },
+  { section: "10. Maintenance", title: "Review Cycle & Archiving", anchor: "s10", text: "last updated annual review archive remove outdated content" },
+  { section: "10. Maintenance", title: "Content Workflow Statuses", anchor: "s10", text: "requested in progress SME review edits final review published needs update archived" },
+  { section: "Quick Reference", title: "Quick Reference Card", anchor: "quickref", text: "cheat sheet summary rules reading level sentence paragraph acronym disclaimer" },
+];
+
+const input = document.getElementById('search-input');
+const resultsBox = document.getElementById('search-results');
+
+input.addEventListener('input', () => {
+  const q = input.value.trim().toLowerCase();
+  resultsBox.innerHTML = '';
+  if (q.length < 2) { resultsBox.style.display = 'none'; return; }
+
+  const matches = searchData.filter(d =>
+    d.title.toLowerCase().includes(q) ||
+    d.text.toLowerCase().includes(q) ||
+    d.section.toLowerCase().includes(q)
+  ).slice(0, 8);
+
+  if (!matches.length) {
+    resultsBox.innerHTML = '<div class="search-result-item"><div class="result-title" style="color:#999">No results found</div></div>';
+    resultsBox.style.display = 'block';
+    return;
+  }
+
+  matches.forEach(m => {
+    const div = document.createElement('div');
+    div.className = 'search-result-item';
+    const titleHL = m.title.replace(new RegExp(`(${q})`, 'gi'), '<mark>$1</mark>');
+    div.innerHTML = `<div class="result-section">${m.section}</div><div class="result-title">${titleHL}</div>`;
+    div.addEventListener('click', () => {
+      const target = document.getElementById(m.anchor);
+      if (target) {
+        // Open accordion if inside one
+        const cat = target.closest ? target.closest('.acronym-cat') : null;
+        if (cat && !cat.classList.contains('open')) cat.classList.add('open');
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      resultsBox.style.display = 'none';
+      input.value = '';
+    });
+    resultsBox.appendChild(div);
+  });
+  resultsBox.style.display = 'block';
+});
+
+document.addEventListener('click', e => {
+  if (!e.target.closest('.header-search')) resultsBox.style.display = 'none';
+});
+
+input.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { resultsBox.style.display = 'none'; input.blur(); }
+});
+</script>
+</body>
+</html>
